@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RandomModel</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="model.js"></script>
+</head>
+<body>
+  <h1>Моделирование случайной величины,<br><span class="subheader"><span class="law_random">с равномерным законом распределения</span> <span class="interval">на произвольном интервале</span></span></h1>
+  <div class="row">
+    <div class="canvaswrap">
+      <canvas id="graphrandom1">Браузер устарел, откройте в обновленном браузере!!!</canvas>
+      <canvas id="graphrandom2">Браузер устарел, откройте в обновленном браузере!!!</canvas>
+    </div>
+    <div class="interface">
+      
+      <fieldset class="fieldset">
+        <legend>Начальные данные</legend>
+        <div class="inputgroup">
+          <label class="inputgroup__label" for="a_rang">Начало интервала </label>
+          <input class="inputgroup__input" type="number" name="min" id="a_rang" value="6" min="-20" max="1000">
+        </div>
+        <div class="inputgroup">
+          <label class="inputgroup__label" for="b_rang">Конец интервала</label>
+          <input class="inputgroup__input" type="number" id="b_rang" name="max" value="509" min="1" max="1500">
+        </div>
+        <div class="inputgroup">
+          <label class="inputgroup__label" for="index">Количество сгенерированных значений</label>
+          <input class="inputgroup__input" type="number" id="index" name="counters" value="100">
+        </div>
+        <div class="inputgroup">
+          <label class="inputgroup__label" for="check">Сохранять метки</label>
+          <input  type="checkbox" id="check" name="check">
+        </div>
+        <button onclick="" id="btnMakeModel">Смоделировать</button>
+        <button onclick="" id="btnClear" disabled>Очистить</button>
+        <button onclick="" id="btnShow" disabled>Показать плотность</button>
+        <a href="#openModal">Открыть модальное окно</a>
+      </fieldset>
+    </div>
+  </div>
+  <div class="modal" id="openModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title">Плотность вероятности</h3>
+          <a href="#close" title="Close" class="close">×</a>
+        </div>
+        <div class="modal-body">    
+          <canvas id="density">холст не поддерживается</canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div>Лаболаторная работа</div>
+    <div>Иркутск</div>
+    <div>2022 г.</div>
+  </footer>
+</body>
+</html>
