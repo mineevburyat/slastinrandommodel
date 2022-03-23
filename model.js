@@ -97,6 +97,11 @@ class Graph {
     this.context.moveTo(start_x, start_y);
     this.context.lineTo(start_x, end_y);
     this.context.stroke();
+    this.context.save();
+    this.context.rotate(Math.PI / 2);
+    this.context.fillStyle = "red";
+    this.context.fillText(1 / (b - a), (start_y + end_y)/2, -(start_x + 3));
+    this.context.restore();
     this.context.restore();
   }
   _DrawAxis() {
@@ -191,7 +196,7 @@ window.onload = () => {
   let inputdata = new getDataSet('input[type=number]');
   let randOnOne = new Graph('graphrandom1', 0, 1, inputdata.num_count, 1);
   let randOnRange = new Graph('graphrandom2', inputdata.min, inputdata.max, inputdata.num_count, 2);
-  let dansity = new Graph('graphdensity', 0, 5/(inputdata.max - inputdata.min), inputdata.max + 10, 1, 96, 50);
+  let dansity = new Graph('graphdensity', 0, 10/(inputdata.max - inputdata.min), inputdata.max + 10, 1, 96, 50);
   randOnOne.init();
   randOnRange.init();
 
@@ -208,7 +213,7 @@ window.onload = () => {
       inputdata = new getDataSet('input[type=number]');
       randOnOne = new Graph('graphrandom1', 0, 1, inputdata.num_count, 1);
       randOnRange = new Graph('graphrandom2', inputdata.min, inputdata.max, inputdata.num_count, 2);
-      dansity = new Graph('graphdensity', 0, 1/(inputdata.max - inputdata.min), inputdata.max + 10, 1, 96, 50);
+      dansity = new Graph('graphdensity', 0, 10/(inputdata.max - inputdata.min), inputdata.max + 10, 1, 96, 50);
       randOnOne.init();
       randOnRange.init();
       dansity.init();
