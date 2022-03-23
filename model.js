@@ -1,6 +1,7 @@
 class Graph {
   constructor(canvasid, min_x = 0, max_x = 1, max_y = 100,
-               height_multipl = 1) {
+               height_multipl = 1, persentwidth = 69, step = 10) {
+    this.step = step;
     this.timeoutlist = [];
     this.MAX_X = max_x;
     this.MAX_Y = max_y;
@@ -11,7 +12,7 @@ class Graph {
     //соотношение оси x к оси y
     this._PROPORTIONS = Math.round(5 / this.HEIGHT_MULTIPL);
     // ширина холста по отношению к размеру экрана
-    this._WIDTHCANVAS = 69 / 100
+    this._WIDTHCANVAS = persentwidth / 100;
     this.size = {
       width: 0,
       height: 0,
@@ -82,6 +83,17 @@ class Graph {
     }
   }
 
+  DrawDensity(a, b) {
+    let start_y = this.scale.x * (1 / (b - a));
+    let start_x = this.scale.y * a;
+    let end_y = this.scale.x * (1 / (b - a));
+    let end_x = this.scale.y * b;
+    console.log(start_x, start_y, end_x, end_y);
+    this.context.beginPath();
+    this.context.moveTo(start_x, start_y);
+    this.context.lineTo(end_x, end_y);
+    this.context.stroke();
+  }
   _DrawAxis() {
     //сохранить состояние и сменить точку отчета
     this.context.save();
@@ -111,7 +123,7 @@ class Graph {
     this.context.stroke()
     this.context.restore();
   }
-  _DrawGrid() {
+  _DrawGrid(step=this.step) {
     //сохранить состояние и сменить точку отчета
     this.context.save();
     this.context.translate(this.zeroPoint.x, this.zeroPoint.y);
@@ -138,11 +150,11 @@ class Graph {
     }
     //unit lines parralel to axis y
     for (let i = 1; i <= this.MAX_Y; i++) {
-      this.context.moveTo(0, 10 * i * this.scale.y);
-      this.context.lineTo(this.MAX_X * this.scale.x + 40, 10 * i * this.scale.y);
+      this.context.moveTo(0, step * i * this.scale.y);
+      this.context.lineTo(this.MAX_X * this.scale.x + 40, step * i * this.scale.y);
       this.context.save();
       this.context.rotate(Math.PI / 2);
-      this.context.fillText(i * 10, i * 10 * this.scale.y - 5, 10);
+      this.context.fillText(i * step, i * step * this.scale.y - 5, 10);
       this.context.restore();
     }
     this.context.stroke()
@@ -174,8 +186,12 @@ window.onload = () => {
   let inputdata = new getDataSet('input[type=number]');
   let randOnOne = new Graph('graphrandom1', 0, 1, inputdata.num_count, 1);
   let randOnRange = new Graph('graphrandom2', inputdata.min, inputdata.max, inputdata.num_count, 2);
+  let dansity = new Graph('graphdensity', 0, 5/(inputdata.max - inputdata.min), inputdata.max + 10, 1, 96, 50);
   randOnOne.init();
   randOnRange.init();
+
+  dansity.init();
+  dansity.DrawDensity(inputdata.min, inputdata.max);
 
   const btnStart = document.querySelector("#btnMakeModel");
   const btnClear = document.querySelector('#btnClear');
@@ -187,8 +203,11 @@ window.onload = () => {
       inputdata = new getDataSet('input[type=number]');
       randOnOne = new Graph('graphrandom1', 0, 1, inputdata.num_count, 1);
       randOnRange = new Graph('graphrandom2', inputdata.min, inputdata.max, inputdata.num_count, 2);
+      dansity = new Graph('graphdensity', 0, 1/(inputdata.max - inputdata.min), inputdata.max + 10, 1, 96, 50);
       randOnOne.init();
       randOnRange.init();
+      dansity.init();
+      dansity.DrawDensity(inputdata.min, inputdata.max);
     })
   });
   const savelabel = document.querySelector('input[type=checkbox]');

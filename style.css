@@ -41,6 +41,10 @@ h1 {
   /* height: 300px; */
 }
 
+#graphdensity {
+  border: 1px solid black;
+}
+
 .fieldset {
   display: flex;
   flex-direction: column;
@@ -93,6 +97,8 @@ text-transform: uppercase;
 cursor: pointer;
 text-decoration: none;
 text-align: center;
+font-weight: 200;
+color: black
 }
 
 .button:hover:not([disabled]) {
@@ -138,13 +144,7 @@ footer {
   width: auto;
   margin: 10px;
 }
-@media (min-width: 576px) {
-.modal-dialog {
-    max-width: 500px;
-    margin: 30px auto; /* для отображения модального окна по центру */
-}
-}
-/* свойства для блока, содержащего контент модального окна */ 
+
 .modal-content {
   position: relative;
   display: -webkit-box;
