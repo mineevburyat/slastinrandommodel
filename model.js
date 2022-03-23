@@ -221,14 +221,18 @@ window.onload = () => {
     })
   });
   const savelabel = document.querySelector('input[type=checkbox]');
-
+  const counterbox = document.querySelector('.counter');
+  let counter = 0;
   btnStart.addEventListener('click',() => {
     if (savelabel.checked) {
       randOnOne.DrawPoints();
       randOnRange.DrawPoints();
+      counter = counter + 1;
+      counterbox.textContent = counter;
     } else {
       randOnOne.clear();
       randOnRange.clear();
+      counterbox.textContent = 1;
       randOnOne.DrawPoints();
       randOnRange.DrawPoints();
     }
@@ -241,5 +245,7 @@ window.onload = () => {
     randOnRange.clear();
     btnClear.disabled = true;
     btnShow.disabled = true;
+    counter = 0;
+    counterbox.textContent = 0;
   });
 }
