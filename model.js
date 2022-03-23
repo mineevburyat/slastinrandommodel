@@ -230,9 +230,10 @@ window.onload = () => {
       counter = counter + 1;
       counterbox.textContent = counter;
     } else {
+      counter = 1;
       randOnOne.clear();
       randOnRange.clear();
-      counterbox.textContent = 1;
+      counterbox.textContent = counter;
       randOnOne.DrawPoints();
       randOnRange.DrawPoints();
     }
