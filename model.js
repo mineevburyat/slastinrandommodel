@@ -83,16 +83,21 @@ class Graph {
     }
   }
 
-  DrawDensity(a, b) {
-    let start_y = this.scale.x * (1 / (b - a));
-    let start_x = this.scale.y * a;
-    let end_y = this.scale.x * (1 / (b - a));
-    let end_x = this.scale.y * b;
-    console.log(start_x, start_y, end_x, end_y);
+  DrawDensity(a,b) {
+    console.log(a, b);
+    this.context.save();
+    this.context.translate(this.zeroPoint.x, this.zeroPoint.y);
+    this.context.rotate(-Math.PI/2);
+    this.context.strokeStyle = "red";
+    let start_x = this.scale.x * (1 / (b - a));
+    let start_y = this.scale.y * a;
+    let end_y = this.scale.y * b;
+    console.log(start_x, end_y, start_y);
     this.context.beginPath();
     this.context.moveTo(start_x, start_y);
-    this.context.lineTo(end_x, end_y);
+    this.context.lineTo(start_x, end_y);
     this.context.stroke();
+    this.context.restore();
   }
   _DrawAxis() {
     //сохранить состояние и сменить точку отчета
